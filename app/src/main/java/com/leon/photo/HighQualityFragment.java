@@ -18,6 +18,7 @@ import java.util.Objects;
 public class HighQualityFragment extends DialogFragment {
     HighQualityFragmentBinding binding;
     private String url;
+    static final String KEY = "URL";
 
     public HighQualityFragment() {
     }
@@ -25,7 +26,7 @@ public class HighQualityFragment extends DialogFragment {
     public static HighQualityFragment newInstance(String url) {
         HighQualityFragment fragment = new HighQualityFragment();
         Bundle args = new Bundle();
-        args.putString("URL", url);
+        args.putString(KEY, url);
         fragment.setArguments(args);
         return fragment;
     }
@@ -34,7 +35,7 @@ public class HighQualityFragment extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            url = getArguments().getString(("URL"));
+            url = getArguments().getString((KEY));
         }
     }
 
