@@ -33,12 +33,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.recycler_item, parent, false);
         ViewHolder holder = new ViewHolder(view);
-//        holder.imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+        holder.imageView.setOnClickListener(v -> {
+            FragmentTransaction fragmentTransaction = ((MainActivity) context).getSupportFragmentManager().beginTransaction();
+            HighQualityFragment highQualityFragment = HighQualityFragment.newInstance(photosFeedBack.get(viewType).url);
+            highQualityFragment.show(fragmentTransaction, "");
+        });
         return holder;
     }
 
@@ -47,11 +46,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         MainActivity.photoFeedBack photoFeedBack = photosFeedBack.get(position);
         holder.textView.setText(photoFeedBack.title);
         Picasso.get().load(photoFeedBack.thumbnailUrl).into(holder.imageView);
-        holder.linearLayout.setOnClickListener(v -> {
-            FragmentTransaction fragmentTransaction = ((MainActivity) context).getSupportFragmentManager().beginTransaction();
-            HighQualityFragment highQualityFragment = HighQualityFragment.newInstance(photoFeedBack.url);
-            fragmentTransaction.show(highQualityFragment);
-        });
     }
 
     @Override
