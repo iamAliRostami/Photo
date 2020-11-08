@@ -78,8 +78,10 @@ public class MainActivity extends AppCompatActivity {
                     binding.progressBar.setVisibility(View.GONE);
                 }
             });
-        else
+        else {
             Toast.makeText(getApplicationContext(), "اینترنت متصل نیست.", Toast.LENGTH_LONG).show();
+            binding.progressBar.setVisibility(View.GONE);
+        }
     }
 
     private Uri buildURI(String url, Map<String, String> params) {
