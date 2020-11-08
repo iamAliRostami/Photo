@@ -5,7 +5,6 @@ import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -69,15 +68,14 @@ public class MainActivity extends AppCompatActivity {
                             return false;
                         }
                     });
-
-//                    Picasso.get().load(response.body().get(1).url).into(binding.imageView);
+                    binding.progressBar.setVisibility(View.GONE);
                 }
 
                 @Override
                 public void onFailure(@NotNull Call<ArrayList<photoFeedBack>> call,
                                       @NotNull Throwable t) {
-                    Log.e("Error", t.getLocalizedMessage());
-
+                    Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                    binding.progressBar.setVisibility(View.GONE);
                 }
             });
         else
